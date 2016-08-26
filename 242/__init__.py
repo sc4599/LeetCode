@@ -6,7 +6,16 @@ class Solution(object):
         :type t: str
         :rtype: bool
         """
-
+        if len(s) != len(t):
+            return False
+        first_list= [i for i in s]
+        second_list = [i for i in t]
+        for i in first_list:
+            if i in second_list:
+                second_list.remove(i)
+            else:
+                return False
+        return True
 
 
 
