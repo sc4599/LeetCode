@@ -20,3 +20,6 @@ if __name__ == "__main__":
     print cls.titleToNumber(s)
     l = ['0', '1', '2']
     # print range(0, 6)
+
+    s = 'ABCD'
+    print cls.titleToNumber(s)
