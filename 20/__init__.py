@@ -18,7 +18,7 @@ class Solution(object):
                 if ch == ")" and stack[-1] == "(" or ch == "]" and stack[-1] == "[" or ch == "}" and stack[-1] == "{":
                     stack.pop()
                 else:
-                    return  False
+                    return False
         return not stack
 
 import unittest

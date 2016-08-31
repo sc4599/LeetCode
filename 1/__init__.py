@@ -43,8 +43,20 @@ class Solution(object):
         第二种解法是先对数组进行排序，然后使用夹逼的方法找出满足条件的pair，原理是因为数组是有序的，那么假设当前结果比target大，
         那么左端序号右移只会使两个数的和更大，反之亦然。所以每次只会有一个选择，从而实现线性就可以求出结果。
         该算法的时间复杂度是O(nlogn+n)=O(nlogn)，空间复杂度取决于排序算法。
-        代码如下：
+        代码如下：(不适合有重复元素的数组)
         """
+        nums.sort()
+        left = 0
+        rnums = nums
+        rnums.append(target)
+        right = len(nums)-1 if nums[-1:]<target else rnums.index(target)
+
+        while (nums[left]+nums[right])!=target:
+            if (nums[left]+nums[right])>target:
+                right-=1
+            if (nums[left]+nums[right])<target:
+                left+=1
+        return [left,right]
 
 class TestSolution(unittest.TestCase):
     # def test_twoSum(self):
@@ -55,6 +67,15 @@ class TestSolution(unittest.TestCase):
     #     self.assertEqual(r, [1, 2])
     #     r = cls.twoSum([2, 7, 11, 15], 26)
     #     self.assertEqual(r, [2, 3])
+    def test_twoSum_2(self):
+        cls = Solution()
+        r = cls.twoSum_2([2, 7, 11, 15], 9)
+        self.assertEqual(r, [0, 1])
+        r = cls.twoSum_2([2, 7, 11, 15], 18)
+        self.assertEqual(r, [1, 2])
+        r = cls.twoSum_2([0, 4, 3, 0], 0)
+        self.assertEqual(r, [0, 3])
+
     def test_twoSum_3(self):
         cls = Solution()
         r = cls.twoSum_3([2, 7, 11, 15], 9)
@@ -74,4 +95,5 @@ class TestSolution(unittest.TestCase):
 if __name__ == "__main__":
     unittest.main()
     # cls = Solution()
+
     # r = cls.twoSum([2, 7, 11, 15], 18)
